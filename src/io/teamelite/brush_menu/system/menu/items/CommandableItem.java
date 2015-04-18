@@ -18,19 +18,19 @@ import java.util.List;
  * 				Bukkit plugin. It allows a user to open up an inventory interface and
  * 				select their desired VoxelSniper brush.
  */
-public class BrushItem extends MenuItem {
+public class CommandableItem extends MenuItem {
 
     // Instance properties
     private List<String> commands;
 
     /**
-     * BrushItem constructor
+     * CommandableItem constructor
      *
      * @param inventory The InventoryMenu instance to handle the items
      * @param item The item to represent the menu option
      * @param commands The commands to execute when the item is selected
      */
-    protected BrushItem(InventoryMenu inventory, ItemStack item, String... commands) {
+    protected CommandableItem(InventoryMenu inventory, ItemStack item, String... commands) {
         super(inventory, item);
         this.commands = Arrays.asList(commands);
     }
