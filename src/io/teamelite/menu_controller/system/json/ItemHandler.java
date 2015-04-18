@@ -1,12 +1,9 @@
 package io.teamelite.menu_controller.system.json;
 
-import io.teamelite.menu_controller.system.menu.InventoryMenu;
 import io.teamelite.menu_controller.system.menu.MenuItem;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * @name 		MenuController
@@ -18,18 +15,18 @@ import java.util.UUID;
  * 				It allows a user to open up an inventory interface and
  * 				select their saved menu options.
  */
-public class ItemLoader {
+public class ItemHandler {
 
-    private static ItemLoader instance;
+    private static ItemHandler instance;
 
     /**
-     * Get the ItemLoader
+     * Get the ItemHandler
      *
-     * @return The ItemLoader instance
+     * @return The ItemHandler instance
      */
-    public static ItemLoader instance() {
+    public static ItemHandler instance() {
         if (instance == null) {
-            instance = new ItemLoader();
+            instance = new ItemHandler();
         }
         return instance;
     }
@@ -38,9 +35,9 @@ public class ItemLoader {
     private List<MenuItem> items;
 
     /**
-     * ItemLoader constructor
+     * ItemHandler constructor
      */
-    private ItemLoader() { this.items = new ArrayList<MenuItem>(); }
+    private ItemHandler() { this.items = new ArrayList<MenuItem>(); }
 
 
 }
