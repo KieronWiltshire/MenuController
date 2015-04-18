@@ -15,17 +15,18 @@ import org.bukkit.inventory.ItemStack;
 public abstract class MenuItem {
 
     // Instance properties
-    private transient InventoryMenu inventory;
+    private transient InventoryMenu menu;
     private ItemStack item;
 
     /**
      * MenuItem constructor
      *
+     * @param menu The inventory menu
      * @param item The item to represent the menu option
      */
-    protected MenuItem(InventoryMenu inventory, ItemStack item) {
-        this.inventory = inventory;
-        this.item = item;
+    protected MenuItem(InventoryMenu menu, ItemStack item) {
+        this.menu = menu;
+        this.setItem(item);
     }
 
     /**
@@ -33,8 +34,8 @@ public abstract class MenuItem {
      *
      * @return The InventoryMenu instance
      */
-    public InventoryMenu getInventory() {
-        return this.inventory;
+    public InventoryMenu getMenu() {
+        return this.menu;
     }
 
     /**
@@ -43,7 +44,12 @@ public abstract class MenuItem {
      * @param item The item to represent the menu option
      */
     public void setItem(ItemStack item) {
-        this.item = item;
+        if (item == null) {
+            this.getInventory().removeItem(this);
+        } else {
+            this.item = item;
+            this.getInventory().addItem(this);
+        }
     }
 
     /**

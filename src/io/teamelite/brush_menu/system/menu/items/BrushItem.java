@@ -36,7 +36,7 @@ public class BrushItem extends MenuItem {
 
     @Override
     public void onItemSelect() {
-        // TODO
+        if (this.getMenu().getInventory().)
     }
 
 }
