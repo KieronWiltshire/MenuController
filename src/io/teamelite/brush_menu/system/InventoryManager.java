@@ -1,14 +1,10 @@
 package io.teamelite.brush_menu.system;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryHolder;
 
 /**
  * @name 		BrushMenu
@@ -65,34 +61,6 @@ public class InventoryManager implements Listener {
         }
         p.closeInventory();
         e.setCancelled(true);
-    }
-
-    /**
-     * MenuInventory class
-     */
-    public class MenuInventory {
-
-        // Instance properties
-        private Inventory inventory;
-
-        /**
-         * MenuInventory constructor
-         *
-         * @param holder The holder of the inventory
-         */
-        public MenuInventory(InventoryHolder holder) {
-            this.inventory = Bukkit.createInventory(holder, InventoryType.CHEST, "BrushMenu");
-        }
-
-        /**
-         * Get the inventory
-         *
-         * @return The Inventory instance
-         */
-        public Inventory getInventory() {
-            return this.inventory;
-        }
-
     }
 
 }
