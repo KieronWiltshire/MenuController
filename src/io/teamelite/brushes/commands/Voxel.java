@@ -13,7 +13,9 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class Voxel implements CommandExecutor {
+
 	private Inventory inv;
+
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		Player p = (Player) sender;
 		if(cmd.getName().equalsIgnoreCase("voxel")) {
@@ -34,4 +36,5 @@ public class Voxel implements CommandExecutor {
 		}
 		return true;
 	}
+
 }

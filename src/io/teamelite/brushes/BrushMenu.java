@@ -11,7 +11,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
- * @name 		TEBrushes
+ * @name 		BrushMenu
  * @author 		Liam Reffell and Kieron Wiltshire
  * @contact 	http://www.mcteamelite.com/
  * @license 	MIT License
@@ -20,17 +20,17 @@ import org.bukkit.plugin.java.JavaPlugin;
  * 				Bukkit plugin. It allows a user to open up an inventory interface and
  * 				select their desired VoxelSniper brush.
  */
-public class VoxelMenu extends JavaPlugin {
+public class BrushMenu extends JavaPlugin {
 
 	// Plugin instance
-	private static VoxelMenu instance;
+	private static BrushMenu instance;
 
 	/**
-	 * Get the VoxelMenu plugin
+	 * Get the BrushMenu plugin
 	 *
-	 * @return The VoxelMenu plugin instance
+	 * @return The BrushMenu plugin instance
 	 */
-	public static VoxelMenu getPlugin() {
+	public static BrushMenu getPlugin() {
 		return instance;
 	}
 

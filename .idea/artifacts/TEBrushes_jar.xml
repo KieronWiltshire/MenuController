@@ -2,7 +2,7 @@
   <artifact type="jar" build-on-make="true" name="TEBrushes:jar">
     <output-path>$USER_HOME$/Desktop</output-path>
     <root id="archive" name="TEBrushes.jar">
-      <element id="extracted-dir" path="$USER_HOME$/Desktop/KDev/#Servers/WorldMe/Spigot.jar" path-in-jar="/" />
+      <element id="module-output" name="TEBrushes" />
     </root>
   </artifact>
 </component>
