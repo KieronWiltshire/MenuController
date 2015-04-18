@@ -23,16 +23,18 @@ public class BrushItem extends MenuItem {
     /**
      * BrushItem constructor
      *
+     * @param inventory The InventoryMenu instance to handle the items
      * @param item The item to represent the menu option
+     * @param commands The commands to execute when the item is selected
      */
-    protected BrushItem(ItemStack item, String... commands) {
-        super(item);
+    protected BrushItem(InventoryMenu inventory, ItemStack item, String... commands) {
+        super(inventory, item);
         this.commands = Arrays.asList(commands);
     }
 
     @Override
     public void onItemSelect() {
-
+        // TODO
     }
 
 }
