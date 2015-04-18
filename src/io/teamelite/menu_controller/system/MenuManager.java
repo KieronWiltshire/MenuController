@@ -1,7 +1,7 @@
 package io.teamelite.menu_controller.system;
 
 import com.google.common.base.Optional;
-import io.teamelite.menu_controller.MenuController;
+import io.teamelite.menu_controller.MenuPlugin;
 import io.teamelite.menu_controller.system.menu.InventoryMenu;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -22,24 +22,38 @@ import java.util.UUID;
  */
 public class MenuManager {
 
+    private static MenuManager instance;
+
+    /**
+     * Get the MenuManager
+     *
+     * @return The MenuManager instance
+     */
+    public static MenuManager instance() {
+        if (instance == null) {
+            instance = new MenuManager();
+        }
+        return instance;
+    }
+
+    // Instance properties
+    private HashMap<UUID, InventoryMenu> manager;
+
     /**
      * MenuManager constructor
      */
-    private MenuManager() { /* private constructor to prevent developer access */ }
-
-    // A HashMap to store the player's custom menus
-    private static HashMap<UUID, InventoryMenu> manager = new HashMap<UUID, InventoryMenu>();
+    private MenuManager() { this.manager = new HashMap<UUID, InventoryMenu>(); }
 
     /**
      * Create an InventoryMenu
      *
      * @param player The player you wish to create a menu for
      */
-    public static void createMenu(Player player, String title) {
+    public void createMenu(Player player, String title) {
         if (manager.containsKey(player.getUniqueId())) return;
 
         InventoryMenu menu = new InventoryMenu(player, title);
-        Bukkit.getPluginManager().registerEvents(menu, MenuController.getPlugin());
+        Bukkit.getPluginManager().registerEvents(menu, MenuPlugin.instance());
 
         manager.put(player.getUniqueId(), menu);
     }
@@ -49,10 +63,10 @@ public class MenuManager {
      *
      * @param player The player you wish to destroy the menus of
      */
-    public static void destroyMenu(Player player) {
-        if (manager.containsKey(player.getUniqueId())) {
-            HandlerList.unregisterAll(manager.get(player.getUniqueId()));
-            manager.remove(player.getUniqueId());
+    public void destroyMenu(Player player) {
+        if (this.manager.containsKey(player.getUniqueId())) {
+            HandlerList.unregisterAll(this.manager.get(player.getUniqueId()));
+            this.manager.remove(player.getUniqueId());
         }
     }
 
@@ -62,9 +76,9 @@ public class MenuManager {
      * @param player The player you wish to retrieve the menu of
      * @return The InventoryMenu instance
      */
-    public static Optional<InventoryMenu> getMenu(Player player) {
-        if (manager.containsKey(player.getUniqueId())) {
-            return Optional.of(manager.get(player.getUniqueId()));
+    public Optional<InventoryMenu> getMenu(Player player) {
+        if (this.manager.containsKey(player.getUniqueId())) {
+            return Optional.of(this.manager.get(player.getUniqueId()));
         }
         return Optional.<InventoryMenu>absent();
     }

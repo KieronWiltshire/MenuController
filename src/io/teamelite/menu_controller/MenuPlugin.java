@@ -18,7 +18,7 @@ public class MenuPlugin extends JavaPlugin {
 	private static MenuPlugin instance;
 
 	/**
-	 * Get the MenuPlugin plugin
+	 * Get the MenuPlugin
 	 *
 	 * @return The MenuPlugin plugin instance
 	 */

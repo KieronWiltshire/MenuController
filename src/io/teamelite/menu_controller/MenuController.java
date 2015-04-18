@@ -1,6 +1,9 @@
 package io.teamelite.menu_controller;
 
 
+import io.teamelite.menu_controller.system.MenuManager;
+import io.teamelite.menu_controller.system.json.ItemLoader;
+
 /**
  * @name 		MenuController
  * @author 		Liam Reffell and Kieron Wiltshire
@@ -21,6 +24,7 @@ public class MenuController {
     /**
      * Plugin proxy class
      */
-    priate
+    public static MenuManager getManager() { return MenuManager.instance(); }
+    public static ItemLoader getLoader() { return ItemLoader.instance(); }
 
 }

@@ -1,9 +1,12 @@
 package io.teamelite.menu_controller.system.json;
 
+import io.teamelite.menu_controller.system.menu.InventoryMenu;
 import io.teamelite.menu_controller.system.menu.MenuItem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @name 		MenuController
@@ -17,13 +20,27 @@ import java.util.List;
  */
 public class ItemLoader {
 
+    private static ItemLoader instance;
+
+    /**
+     * Get the ItemLoader
+     *
+     * @return The ItemLoader instance
+     */
+    public static ItemLoader instance() {
+        if (instance == null) {
+            instance = new ItemLoader();
+        }
+        return instance;
+    }
+
+    // Instance properties
+    private List<MenuItem> items;
+
     /**
      * ItemLoader constructor
      */
-    private ItemLoader() { /* private constructor to prevent developer access */ }
-
-    // A HashMap to store the player's custom menus
-    private static List<MenuItem> items = new ArrayList<MenuItem>();
+    private ItemLoader() { this.items = new ArrayList<MenuItem>(); }
 
 
 }
