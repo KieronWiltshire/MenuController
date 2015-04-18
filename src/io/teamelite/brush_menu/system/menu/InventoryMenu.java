@@ -1,6 +1,10 @@
 package io.teamelite.brush_menu.system.menu;
 
 import org.bukkit.Bukkit;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
@@ -18,7 +22,7 @@ import java.util.Map;
  * 				Bukkit plugin. It allows a user to open up an inventory interface and
  * 				select their desired VoxelSniper brush.
  */
-public class InventoryMenu {
+public class InventoryMenu implements Listener {
 
     // Instance properties
     private Inventory inventory;
@@ -52,8 +56,10 @@ public class InventoryMenu {
     protected void addItem(int slot, MenuItem item) {
         this.items.put(slot, item);
 
-        // Add the item to the Inventory instance
-        // TODO
+        // Add the item to the inventory instance
+        for (Map.Entry<Integer, MenuItem> entry : this.items.entrySet()) {
+            this.getInventory().setItem(entry.getKey(), entry.getValue().getItem());
+        }
     }
 
     /**
@@ -95,6 +101,22 @@ public class InventoryMenu {
                 if (entry.getValue().equals(item)) {
                     this.removeItem(entry.getKey());
                 }
+            }
+        }
+    }
+
+    @EventHandler
+    private void onInventoryDrag(InventoryDragEvent e) {
+        if (e.getInventory().equals(this.inventory)) {
+            e.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    private void onInventoryClick(InventoryClickEvent e) {
+        if (e.getClickedInventory().equals(this.inventory)) {
+            if (this.items.containsKey(e.getSlot())) {
+                this.items.get(e.getSlot()).onItemSelect();
             }
         }
     }
