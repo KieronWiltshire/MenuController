@@ -1,5 +1,10 @@
 package io.teamelite.brush_menu.system;
 
+import org.bukkit.inventory.ItemStack;
+
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * @name 		BrushMenu
  * @author 		Liam Reffell and Kieron Wiltshire
@@ -11,4 +16,23 @@ package io.teamelite.brush_menu.system;
  * 				select their desired VoxelSniper brush.
  */
 public class BrushItem extends MenuItem {
+
+    // Instance properties
+    private List<String> commands;
+
+    /**
+     * BrushItem constructor
+     *
+     * @param item The item to represent the menu option
+     */
+    protected BrushItem(ItemStack item, String... commands) {
+        super(item);
+        this.commands = Arrays.asList(commands);
+    }
+
+    @Override
+    public void onItemSelect() {
+
+    }
+
 }

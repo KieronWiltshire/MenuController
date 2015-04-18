@@ -15,6 +15,7 @@ import org.bukkit.inventory.ItemStack;
 public abstract class MenuItem {
 
     // Instance properties
+    private transient InventoryMenu inventory;
     private ItemStack item;
 
     /**
@@ -22,8 +23,18 @@ public abstract class MenuItem {
      *
      * @param item The item to represent the menu option
      */
-    protected MenuItem(ItemStack item) {
+    protected MenuItem(InventoryMenu inventory, ItemStack item) {
+        this.inventory = inventory;
         this.item = item;
+    }
+
+    /**
+     * Get the menu
+     *
+     * @return The InventoryMenu instance
+     */
+    public InventoryMenu getInventory() {
+        return this.inventory;
     }
 
     /**
