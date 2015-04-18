@@ -1,12 +1,7 @@
-package io.teamelite.brushes;
+package io.teamelite.brush_menu;
 
-import io.teamelite.brushes.commands.Voxel;
-import io.teamelite.brushes.events.InventoryClick;
-
-import java.util.logging.Level;
-
+import io.teamelite.brush_menu.events.InventoryManager;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -59,8 +54,7 @@ public class BrushMenu extends JavaPlugin {
 	 * being used by this plugin.
 	 */
 	private void registerCommands() {
-		this.getCommand("voxel").setExecutor(new Voxel());
+		this.getCommand("voxel").setExecutor(new BrushMenu());
 	}
 
 }
-		
