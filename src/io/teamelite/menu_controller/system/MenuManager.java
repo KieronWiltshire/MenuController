@@ -5,6 +5,7 @@ import io.teamelite.menu_controller.MenuController;
 import io.teamelite.menu_controller.system.menu.InventoryMenu;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.HandlerList;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -30,7 +31,7 @@ public class MenuManager {
     private static HashMap<UUID, InventoryMenu> manager = new HashMap<UUID, InventoryMenu>();
 
     /**
-     * Create an InventoryMenu for a player
+     * Create an InventoryMenu
      *
      * @param player The player you wish to create a menu for
      */
@@ -41,6 +42,18 @@ public class MenuManager {
         Bukkit.getPluginManager().registerEvents(menu, MenuController.getPlugin());
 
         manager.put(player.getUniqueId(), menu);
+    }
+
+    /**
+     * Destroy an InventoryMenu
+     *
+     * @param player The player you wish to destroy the menus of
+     */
+    public static void destroyMenu(Player player) {
+        if (manager.containsKey(player.getUniqueId())) {
+            HandlerList.unregisterAll(manager.get(player.getUniqueId()));
+            manager.remove(player.getUniqueId());
+        }
     }
 
     /**

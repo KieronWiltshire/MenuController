@@ -22,7 +22,7 @@ import java.util.Map;
  * 				It allows a user to open up an inventory interface and
  * 				select their saved menu options.
  */
-public class InventoryMenu implements Listener {
+public final class InventoryMenu implements Listener {
 
     // Instance properties
     private Inventory inventory;
