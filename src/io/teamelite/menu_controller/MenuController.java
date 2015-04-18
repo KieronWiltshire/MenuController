@@ -2,7 +2,7 @@ package io.teamelite.menu_controller;
 
 
 import io.teamelite.menu_controller.system.MenuManager;
-import io.teamelite.menu_controller.system.json.ItemLoader;
+import io.teamelite.menu_controller.system.json.ItemHandler;
 
 /**
  * @name 		MenuController
@@ -24,7 +24,8 @@ public class MenuController {
     /**
      * Plugin proxy class
      */
+    public static MenuPlugin getPlugin() { return MenuPlugin.instance(); }
     public static MenuManager getManager() { return MenuManager.instance(); }
-    public static ItemLoader getLoader() { return ItemLoader.instance(); }
+    public static ItemHandler getLoader() { return ItemHandler.instance(); }
 
 }
