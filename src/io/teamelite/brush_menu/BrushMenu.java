@@ -1,6 +1,6 @@
 package io.teamelite.brush_menu;
 
-import io.teamelite.brush_menu.events.InventoryManager;
+import io.teamelite.brush_menu.system.InventoryManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;

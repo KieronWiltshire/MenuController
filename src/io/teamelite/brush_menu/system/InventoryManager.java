@@ -1,4 +1,4 @@
-package io.teamelite.brush_menu.events;
+package io.teamelite.brush_menu.system;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
