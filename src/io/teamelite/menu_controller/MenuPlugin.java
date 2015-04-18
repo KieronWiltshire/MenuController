@@ -12,17 +12,17 @@ import org.bukkit.plugin.java.JavaPlugin;
  * 				It allows a user to open up an inventory interface and
  * 				select their saved menu options.
  */
-public class MenuController extends JavaPlugin {
+public class MenuPlugin extends JavaPlugin {
 
 	// Plugin instance
-	private static MenuController instance;
+	private static MenuPlugin instance;
 
 	/**
-	 * Get the MenuController plugin
+	 * Get the MenuPlugin plugin
 	 *
-	 * @return The MenuController plugin instance
+	 * @return The MenuPlugin plugin instance
 	 */
-	public static MenuController getPlugin() {
+	public static MenuPlugin instance() {
 		return instance;
 	}
 

@@ -1,5 +1,10 @@
 package io.teamelite.menu_controller.system.json;
 
+import io.teamelite.menu_controller.system.menu.MenuItem;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @name 		MenuController
  * @author 		Liam Reffell and Kieron Wiltshire
@@ -11,4 +16,14 @@ package io.teamelite.menu_controller.system.json;
  * 				select their saved menu options.
  */
 public class ItemLoader {
+
+    /**
+     * ItemLoader constructor
+     */
+    private ItemLoader() { /* private constructor to prevent developer access */ }
+
+    // A HashMap to store the player's custom menus
+    private static List<MenuItem> items = new ArrayList<MenuItem>();
+
+
 }
