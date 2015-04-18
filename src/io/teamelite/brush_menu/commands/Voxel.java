@@ -1,21 +1,12 @@
-package io.teamelite.brushes.commands;
+package io.teamelite.brush_menu.commands;
 
-import io.teamelite.brushes.Main;
-import io.teamelite.brushes.managers.InventoryManager;
-
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 
 public class Voxel implements CommandExecutor {
 
-	private Inventory inv;
+	// private Inventory inv;
 
+	/* TODO rewrite
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		Player p = (Player) sender;
 		if(cmd.getName().equalsIgnoreCase("voxel")) {
@@ -36,5 +27,6 @@ public class Voxel implements CommandExecutor {
 		}
 		return true;
 	}
+	/*
 
 }

@@ -10,5 +10,5 @@ package io.teamelite.brush_menu.system;
  * 				Bukkit plugin. It allows a user to open up an inventory interface and
  * 				select their desired VoxelSniper brush.
  */
-public class BrushItem {
+public class BrushItem extends MenuItem {
 }
