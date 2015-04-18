@@ -1,8 +1,6 @@
 package io.teamelite.brush_menu.commands;
 
-import org.bukkit.command.CommandExecutor;
-
-public class Voxel implements CommandExecutor {
+public class Voxel /* implements CommandExecutor */ {
 
 	// private Inventory inv;
 
@@ -27,6 +25,6 @@ public class Voxel implements CommandExecutor {
 		}
 		return true;
 	}
-	/*
+	*/
 
 }
