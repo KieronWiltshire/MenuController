@@ -10,12 +10,22 @@ import org.bukkit.ChatColor;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+/**
+ * @name 		TEBrushes
+ * @author 		Liam Reffell and Kieron Wiltshire
+ * @contact 	http://www.mcteamelite.com/
+ * @license 	MIT License
+ * @description
+ * 				The plugin requires Java 1.6 or higher and depends on the VoxelSniper
+ * 				Bukkit plugin. It allows a user to open up an inventory interface and
+ * 				select their desired VoxelSniper brush.
+ */
 public class Main extends JavaPlugin {
+
+	/**
+	 * This method is called once the plugin has been enabled
+	 */
 	public void onEnable() {
-		if(Bukkit.getServer().getPluginManager().getPlugin("VoxelSniper") == null) {
-			getLogger().log(Level.SEVERE, "VoxelSniper was not found on the server!");
-			Bukkit.getServer().getPluginManager().disablePlugin(this);
-		}
 		getCommand("voxel").setExecutor(new Voxel());
 		PluginManager pm = Bukkit.getServer().getPluginManager();
 		pm.registerEvents(new InventoryClick(), this);
