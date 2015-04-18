@@ -70,7 +70,7 @@ public class InventoryManager implements Listener {
     /**
      * MenuInventory class
      */
-    private class MenuInventory {
+    public class MenuInventory {
 
         // Instance properties
         private Inventory inventory;
