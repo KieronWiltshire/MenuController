@@ -2,6 +2,7 @@ package io.teamelite.brush_menu.system.menu.items;
 
 import io.teamelite.brush_menu.system.menu.InventoryMenu;
 import io.teamelite.brush_menu.system.menu.MenuItem;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
@@ -36,7 +37,12 @@ public class BrushItem extends MenuItem {
 
     @Override
     public void onItemSelect() {
-        if (this.getMenu().getInventory().)
+        if (this.getMenu().getInventory().getHolder() instanceof Player) {
+            Player p = (Player) this.getMenu().getInventory().getHolder();
+            for(String c : this.commands) {
+                p.performCommand(c);
+            }
+        }
     }
 
 }

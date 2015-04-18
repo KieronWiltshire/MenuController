@@ -45,10 +45,10 @@ public abstract class MenuItem {
      */
     public void setItem(ItemStack item) {
         if (item == null) {
-            this.getInventory().removeItem(this);
+            this.getMenu().removeItem(this);
         } else {
             this.item = item;
-            this.getInventory().addItem(this);
+            this.getMenu().addItem(this);
         }
     }
 
