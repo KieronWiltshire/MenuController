@@ -1,7 +1,7 @@
-package io.teamelite.brush_menu.system.menu.items;
+package io.teamelite.menu_controller.system.menu.items;
 
-import io.teamelite.brush_menu.system.menu.InventoryMenu;
-import io.teamelite.brush_menu.system.menu.MenuItem;
+import io.teamelite.menu_controller.system.menu.InventoryMenu;
+import io.teamelite.menu_controller.system.menu.MenuItem;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -30,7 +30,7 @@ public class CommandableItem extends MenuItem {
      * @param item The item to represent the menu option
      * @param commands The commands to execute when the item is selected
      */
-    protected CommandableItem(InventoryMenu inventory, ItemStack item, String... commands) {
+    public CommandableItem(InventoryMenu inventory, ItemStack item, String... commands) {
         super(inventory, item);
         this.commands = Arrays.asList(commands);
     }

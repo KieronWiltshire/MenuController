@@ -1,4 +1,4 @@
-package io.teamelite.brush_menu.system.menu;
+package io.teamelite.menu_controller.system.menu;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -13,14 +13,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @name 		BrushMenu
+ * @name 		MenuController
  * @author 		Liam Reffell and Kieron Wiltshire
  * @contact 	http://www.mcteamelite.com/
  * @license 	MIT License
  * @description
- * 				The plugin requires Java 1.6 or higher and depends on the VoxelSniper
- * 				Bukkit plugin. It allows a user to open up an inventory interface and
- * 				select their desired VoxelSniper brush.
+ * 				The plugin requires Java 1.6 or higher.
+ * 				It allows a user to open up an inventory interface and
+ * 				select their saved menu options.
  */
 public class InventoryMenu implements Listener {
 
