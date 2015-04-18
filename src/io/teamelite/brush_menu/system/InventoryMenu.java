@@ -51,6 +51,9 @@ public class InventoryMenu {
      */
     public void addItem(int slot, MenuItem item) {
         this.items.put(slot, item);
+
+        // Add the item to the Inventory instance
+        // TODO
     }
 
     /**
