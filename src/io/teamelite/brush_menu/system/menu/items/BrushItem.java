@@ -1,5 +1,7 @@
-package io.teamelite.brush_menu.system;
+package io.teamelite.brush_menu.system.menu.items;
 
+import io.teamelite.brush_menu.system.menu.InventoryMenu;
+import io.teamelite.brush_menu.system.menu.MenuItem;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;

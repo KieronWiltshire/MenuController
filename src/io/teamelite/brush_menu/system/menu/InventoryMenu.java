@@ -1,4 +1,4 @@
-package io.teamelite.brush_menu.system;
+package io.teamelite.brush_menu.system.menu;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.inventory.InventoryType;
@@ -49,7 +49,7 @@ public class InventoryMenu {
      * @param slot The inventory slot of the item
      * @param item The item to add to the inventory menu
      */
-    public void addItem(int slot, MenuItem item) {
+    protected void addItem(int slot, MenuItem item) {
         this.items.put(slot, item);
 
         // Add the item to the Inventory instance
@@ -61,7 +61,7 @@ public class InventoryMenu {
      *
      * @param item The item to add to the inventory menu
      */
-    public void addItem(MenuItem item) {
+    protected void addItem(MenuItem item) {
         for(int i = 0; i < inventory.getSize(); i++) {
             if (!this.items.containsKey(i)) {
                 this.addItem(i, item);
@@ -75,7 +75,7 @@ public class InventoryMenu {
      *
      * @param slot The item slot of which to remove
      */
-    public void removeItem(int slot) {
+    protected void removeItem(int slot) {
         if (this.items.containsKey(slot)) {
             this.items.remove(slot);
 
@@ -89,7 +89,7 @@ public class InventoryMenu {
      *
      * @param item The item to remove
      */
-    public void removeItem(MenuItem item) {
+    protected void removeItem(MenuItem item) {
         if (this.items.containsValue(item)) {
             for (Map.Entry<Integer, MenuItem> entry : this.items.entrySet()) {
                 if (entry.getValue().equals(item)) {

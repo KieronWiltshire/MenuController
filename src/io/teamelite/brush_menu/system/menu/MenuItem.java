@@ -1,4 +1,4 @@
-package io.teamelite.brush_menu.system;
+package io.teamelite.brush_menu.system.menu;
 
 import org.bukkit.inventory.ItemStack;
 
