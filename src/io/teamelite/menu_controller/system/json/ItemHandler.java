@@ -106,6 +106,9 @@ public class ItemHandler {
         FileWriter out = new FileWriter(f);
         out.write(s);
         out.close();
+        if (!this.items.contains(item)) {
+            this.items.add(item);
+        }
     }
 
     /**
