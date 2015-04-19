@@ -1,4 +1,4 @@
-package io.teamelite.menu_controller.system.json;
+package io.teamelite.menu_controller.system.file;
 
 import com.google.common.collect.ImmutableList;
 import com.google.gson.Gson;
@@ -7,6 +7,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 import io.teamelite.menu_controller.MenuController;
+import io.teamelite.menu_controller.system.file.json.GsonFactory;
 import io.teamelite.menu_controller.system.menu.InventoryMenu;
 import io.teamelite.menu_controller.system.menu.MenuItem;
 import org.bukkit.Bukkit;
@@ -53,7 +54,7 @@ public class ItemHandler {
     }
 
     /**
-     * Loads the list with items generated from their respective json files
+     * Loads the list with items generated from their respective file files
      */
     private void load() {
         Gson g = GsonFactory.getPrettyGson();
@@ -86,7 +87,7 @@ public class ItemHandler {
     }
 
     /**
-     * Save a MenuItem to json flat file
+     * Save a MenuItem to file flat file
      *
      * @param item The MenuItem you wish to save
      */

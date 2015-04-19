@@ -1,4 +1,4 @@
-package io.teamelite.menu_controller.system.json;
+package io.teamelite.menu_controller.system.file.json;
 
 import com.google.gson.*;
 import com.google.gson.annotations.Expose;
