@@ -14,14 +14,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @name 		MenuController
- * @author 		Liam Reffell and Kieron Wiltshire
- * @contact 	http://www.mcteamelite.com/
- * @license 	MIT License
- * @description
- * 				The plugin requires Java 1.6 or higher.
- * 				It allows a user to open up an inventory interface and
- * 				select their saved menu options.
+ * @author Liam Reffell and Kieron Wiltshire
+ * @name MenuController
+ * @contact http://www.mcteamelite.com/
+ * @license MIT License
+ * @description The plugin requires Java 1.6 or higher.
+ * It allows a user to open up an inventory interface and
+ * select their saved menu options.
  */
 public final class InventoryMenu implements Listener {
 
@@ -69,7 +68,7 @@ public final class InventoryMenu implements Listener {
      * @param item The item to add to the inventory menu
      */
     protected void addItem(MenuItem item) {
-        for(int i = 0; i < inventory.getSize(); i++) {
+        for (int i = 0; i < inventory.getSize(); i++) {
             if (!this.items.containsKey(i)) {
                 this.addItem(i, item);
                 return;

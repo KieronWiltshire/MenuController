@@ -27,23 +27,23 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 /**
- * @name 		MenuController
- * @author 		Liam Reffell and Kieron Wiltshire
- * @contact 	http://www.mcteamelite.com/
- * @license 	MIT License
- * @description
- * 				The plugin requires Java 1.6 or higher.
- * 				It allows a user to open up an inventory interface and
- * 				select their saved menu options.
- *
- * 	This GsonFactory resource was created by the Bukkit user "RingOfStorms"
- * 	@author https://bukkit.org/members/ringofstorms.52391/
+ * @author Liam Reffell and Kieron Wiltshire
+ * @author https://bukkit.org/members/ringofstorms.52391/
+ * @name MenuController
+ * @contact http://www.mcteamelite.com/
+ * @license MIT License
+ * @description The plugin requires Java 1.6 or higher.
+ * It allows a user to open up an inventory interface and
+ * select their saved menu options.
+ * <p/>
+ * This GsonFactory resource was created by the Bukkit user "RingOfStorms"
  */
 public class GsonFactory {
 
     @Retention(RetentionPolicy.RUNTIME)
     @Target({ElementType.FIELD})
-    public static @interface GsonIgnore {}
+    public static @interface GsonIgnore {
+    }
 
     private static Gson g = new Gson();
 
@@ -55,11 +55,12 @@ public class GsonFactory {
     /**
      * Returns a Gson instance for use anywhere with new line pretty printing
      * <p>
-     *    Use @GsonIgnore in order to skip serialization and deserialization
+     * Use @GsonIgnore in order to skip serialization and deserialization
      * </p>
+     *
      * @return a Gson instance
      */
-    public static Gson getPrettyGson () {
+    public static Gson getPrettyGson() {
         if (prettyGson == null)
             prettyGson = new GsonBuilder().addSerializationExclusionStrategy(new ExposeExlusion())
                     .addDeserializationExclusionStrategy(new ExposeExlusion())
@@ -75,12 +76,13 @@ public class GsonFactory {
     /**
      * Returns a Gson instance for use anywhere with one line strings
      * <p>
-     *    Use @GsonIgnore in order to skip serialization and deserialization
+     * Use @GsonIgnore in order to skip serialization and deserialization
      * </p>
+     *
      * @return a Gson instance
      */
-    public static Gson getCompactGson () {
-        if(compactGson == null)
+    public static Gson getCompactGson() {
+        if (compactGson == null)
             compactGson = new GsonBuilder().addSerializationExclusionStrategy(new ExposeExlusion())
                     .addDeserializationExclusionStrategy(new ExposeExlusion())
                     .registerTypeAdapter(ItemStack.class, new ItemStackGsonAdapter())
@@ -91,12 +93,12 @@ public class GsonFactory {
         return compactGson;
     }
 
-    private static Map<String, Object> recursiveSerialization (ConfigurationSerializable o) {
+    private static Map<String, Object> recursiveSerialization(ConfigurationSerializable o) {
         Map<String, Object> originalMap = o.serialize();
         Map<String, Object> map = new HashMap<String, Object>();
-        for(Entry<String, Object> entry : originalMap.entrySet()) {
+        for (Entry<String, Object> entry : originalMap.entrySet()) {
             Object o2 = entry.getValue();
-            if(o2 instanceof ConfigurationSerializable) {
+            if (o2 instanceof ConfigurationSerializable) {
                 ConfigurationSerializable serializable = (ConfigurationSerializable) o2;
                 Map<String, Object> newMap = recursiveSerialization(serializable);
                 newMap.put(CLASS_KEY, ConfigurationSerialization.getAlias(serializable.getClass()));
@@ -107,18 +109,18 @@ public class GsonFactory {
         return map;
     }
 
-    private static Map<String, Object> recursiveDoubleToInteger (Map<String, Object> originalMap) {
+    private static Map<String, Object> recursiveDoubleToInteger(Map<String, Object> originalMap) {
         Map<String, Object> map = new HashMap<String, Object>();
-        for(Entry<String, Object> entry : originalMap.entrySet()) {
+        for (Entry<String, Object> entry : originalMap.entrySet()) {
             Object o = entry.getValue();
-            if(o instanceof Double) {
+            if (o instanceof Double) {
                 Double d = (Double) o;
                 Integer i = d.intValue();
                 map.put(entry.getKey(), i);
-            }else if(o instanceof Map) {
+            } else if (o instanceof Map) {
                 Map<String, Object> subMap = (Map<String, Object>) o;
                 map.put(entry.getKey(), recursiveDoubleToInteger(subMap));
-            }else{
+            } else {
                 map.put(entry.getKey(), o);
             }
         }
@@ -129,7 +131,7 @@ public class GsonFactory {
         @Override
         public boolean shouldSkipField(FieldAttributes fieldAttributes) {
             final GsonIgnore ignore = fieldAttributes.getAnnotation(GsonIgnore.class);
-            if(ignore != null)
+            if (ignore != null)
                 return true;
             final Expose expose = fieldAttributes.getAnnotation(Expose.class);
             return expose != null && (!expose.serialize() || !expose.deserialize());
@@ -143,11 +145,12 @@ public class GsonFactory {
 
     private static class ItemStackGsonAdapter extends TypeAdapter<ItemStack> {
 
-        private static Type seriType = new TypeToken<Map<String, Object>>(){}.getType();
+        private static Type seriType = new TypeToken<Map<String, Object>>() {
+        }.getType();
 
         @Override
         public void write(JsonWriter jsonWriter, ItemStack itemStack) throws IOException {
-            if(itemStack == null) {
+            if (itemStack == null) {
                 jsonWriter.nullValue();
                 return;
             }
@@ -156,27 +159,27 @@ public class GsonFactory {
 
         @Override
         public ItemStack read(JsonReader jsonReader) throws IOException {
-            if(jsonReader.peek() == JsonToken.NULL) {
+            if (jsonReader.peek() == JsonToken.NULL) {
                 jsonReader.nextNull();
                 return null;
             }
             return fromRaw(jsonReader.nextString());
         }
 
-        private String getRaw (ItemStack item) {
+        private String getRaw(ItemStack item) {
             Map<String, Object> serial = item.serialize();
 
-            if(serial.get("meta") != null) {
+            if (serial.get("meta") != null) {
                 ItemMeta itemMeta = item.getItemMeta();
 
                 Map<String, Object> originalMeta = itemMeta.serialize();
                 Map<String, Object> meta = new HashMap<String, Object>();
-                for(Entry<String, Object> entry : originalMeta.entrySet())
+                for (Entry<String, Object> entry : originalMeta.entrySet())
                     meta.put(entry.getKey(), entry.getValue());
                 Object o;
-                for(Entry<String, Object> entry : meta.entrySet()) {
+                for (Entry<String, Object> entry : meta.entrySet()) {
                     o = entry.getValue();
-                    if(o instanceof ConfigurationSerializable) {
+                    if (o instanceof ConfigurationSerializable) {
                         ConfigurationSerializable serializable = (ConfigurationSerializable) o;
                         Map<String, Object> serialized = recursiveSerialization(serializable);
                         meta.put(entry.getKey(), serialized);
@@ -188,10 +191,10 @@ public class GsonFactory {
             return g.toJson(serial);
         }
 
-        private ItemStack fromRaw (String raw) {
+        private ItemStack fromRaw(String raw) {
             Map<String, Object> keys = g.fromJson(raw, seriType);
 
-            if(keys.get("amount") != null) {
+            if (keys.get("amount") != null) {
                 Double d = (Double) keys.get("amount");
                 Integer i = d.intValue();
                 keys.put("amount", i);
@@ -200,14 +203,14 @@ public class GsonFactory {
             ItemStack item;
             try {
                 item = ItemStack.deserialize(keys);
-            }catch(Exception e) {
+            } catch (Exception e) {
                 return null;
             }
 
-            if(item == null)
+            if (item == null)
                 return null;
 
-            if(keys.containsKey("meta")) {
+            if (keys.containsKey("meta")) {
                 Map<String, Object> itemmeta = (Map<String, Object>) keys.get("meta");
                 itemmeta = recursiveDoubleToInteger(itemmeta);
                 ItemMeta meta = (ItemMeta) ConfigurationSerialization.deserializeObject(itemmeta, ConfigurationSerialization.getClassByAlias("ItemMeta"));
@@ -220,7 +223,8 @@ public class GsonFactory {
 
     private static class PotionEffectGsonAdapter extends TypeAdapter<PotionEffect> {
 
-        private static Type seriType = new TypeToken<Map<String, Object>>(){}.getType();
+        private static Type seriType = new TypeToken<Map<String, Object>>() {
+        }.getType();
 
         private static String TYPE = "effect";
         private static String DURATION = "duration";
@@ -229,7 +233,7 @@ public class GsonFactory {
 
         @Override
         public void write(JsonWriter jsonWriter, PotionEffect potionEffect) throws IOException {
-            if(potionEffect == null) {
+            if (potionEffect == null) {
                 jsonWriter.nullValue();
                 return;
             }
@@ -238,28 +242,29 @@ public class GsonFactory {
 
         @Override
         public PotionEffect read(JsonReader jsonReader) throws IOException {
-            if(jsonReader.peek() == JsonToken.NULL) {
+            if (jsonReader.peek() == JsonToken.NULL) {
                 jsonReader.nextNull();
                 return null;
             }
             return fromRaw(jsonReader.nextString());
         }
 
-        private String getRaw (PotionEffect potion) {
+        private String getRaw(PotionEffect potion) {
             Map<String, Object> serial = potion.serialize();
 
             return g.toJson(serial);
         }
 
-        private PotionEffect fromRaw (String raw) {
+        private PotionEffect fromRaw(String raw) {
             Map<String, Object> keys = g.fromJson(raw, seriType);
-            return new PotionEffect(PotionEffectType.getById(((Double) keys.get(TYPE)).intValue()), ((Double) keys.get(DURATION)).intValue(), ((Double) keys.get(AMPLIFIER)).intValue(),  (Boolean) keys.get(AMBIENT));
+            return new PotionEffect(PotionEffectType.getById(((Double) keys.get(TYPE)).intValue()), ((Double) keys.get(DURATION)).intValue(), ((Double) keys.get(AMPLIFIER)).intValue(), (Boolean) keys.get(AMBIENT));
         }
     }
 
     private static class LocationGsonAdapter extends TypeAdapter<Location> {
 
-        private static Type seriType = new TypeToken<Map<String, Object>>(){}.getType();
+        private static Type seriType = new TypeToken<Map<String, Object>>() {
+        }.getType();
 
         private static String UUID = "uuid";
         private static String X = "x";
@@ -270,7 +275,7 @@ public class GsonFactory {
 
         @Override
         public void write(JsonWriter jsonWriter, Location location) throws IOException {
-            if(location == null) {
+            if (location == null) {
                 jsonWriter.nullValue();
                 return;
             }
@@ -279,14 +284,14 @@ public class GsonFactory {
 
         @Override
         public Location read(JsonReader jsonReader) throws IOException {
-            if(jsonReader.peek() == JsonToken.NULL) {
+            if (jsonReader.peek() == JsonToken.NULL) {
                 jsonReader.nextNull();
                 return null;
             }
             return fromRaw(jsonReader.nextString());
         }
 
-        private String getRaw (Location location) {
+        private String getRaw(Location location) {
             Map<String, Object> serial = new HashMap<String, Object>();
             serial.put(UUID, location.getWorld().getUID().toString());
             serial.put(X, Double.toString(location.getX()));
@@ -297,7 +302,7 @@ public class GsonFactory {
             return g.toJson(serial);
         }
 
-        private Location fromRaw (String raw) {
+        private Location fromRaw(String raw) {
             Map<String, Object> keys = g.fromJson(raw, seriType);
             World w = Bukkit.getWorld(java.util.UUID.fromString((String) keys.get(UUID)));
             return new Location(w, Double.parseDouble((String) keys.get(X)), Double.parseDouble((String) keys.get(Y)), Double.parseDouble((String) keys.get(Z)),

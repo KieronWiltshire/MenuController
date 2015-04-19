@@ -5,14 +5,13 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Iterator;
 
 /**
- * @name 		MenuController
- * @author 		Liam Reffell and Kieron Wiltshire
- * @contact 	http://www.mcteamelite.com/
- * @license 	MIT License
- * @description
- * 				The plugin requires Java 1.6 or higher.
- * 				It allows a user to open up an inventory interface and
- * 				select their saved menu options.
+ * @author Liam Reffell and Kieron Wiltshire
+ * @name MenuController
+ * @contact http://www.mcteamelite.com/
+ * @license MIT License
+ * @description The plugin requires Java 1.6 or higher.
+ * It allows a user to open up an inventory interface and
+ * select their saved menu options.
  */
 public abstract class MenuItem implements Cloneable {
 
@@ -40,7 +39,7 @@ public abstract class MenuItem implements Cloneable {
      */
     public void setMenu(InventoryMenu menu) {
         if (this.menu != null) {
-            for(Iterator<MenuItem> iter = this.menu.getMenuItems().iterator(); iter.hasNext();) {
+            for (Iterator<MenuItem> iter = this.menu.getMenuItems().iterator(); iter.hasNext(); ) {
                 this.getMenu().removeItem(this);
             }
         }

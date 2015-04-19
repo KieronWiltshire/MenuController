@@ -9,14 +9,13 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * @name 		BrushMenu
- * @author 		Liam Reffell and Kieron Wiltshire
- * @contact 	http://www.mcteamelite.com/
- * @license 	MIT License
- * @description
- * 				The plugin requires Java 1.6 or higher and depends on the VoxelSniper
- * 				Bukkit plugin. It allows a user to open up an inventory interface and
- * 				select their desired VoxelSniper brush.
+ * @author Liam Reffell and Kieron Wiltshire
+ * @name BrushMenu
+ * @contact http://www.mcteamelite.com/
+ * @license MIT License
+ * @description The plugin requires Java 1.6 or higher and depends on the VoxelSniper
+ * Bukkit plugin. It allows a user to open up an inventory interface and
+ * select their desired VoxelSniper brush.
  */
 public class CommandableItem extends MenuItem {
 
@@ -27,9 +26,9 @@ public class CommandableItem extends MenuItem {
      * CommandableItem constructor
      *
      * @param inventory The InventoryMenu instance to handle the items
-     * @param name The name of the menu option
-     * @param item The item to represent the menu option
-     * @param commands The commands to execute when the item is selected
+     * @param name      The name of the menu option
+     * @param item      The item to represent the menu option
+     * @param commands  The commands to execute when the item is selected
      */
     public CommandableItem(InventoryMenu inventory, String name, ItemStack item, String... commands) {
         super(inventory, name, item);
@@ -40,7 +39,7 @@ public class CommandableItem extends MenuItem {
     public void onItemSelect() {
         if (this.getMenu().getInventory().getHolder() instanceof Player) {
             Player p = (Player) this.getMenu().getInventory().getHolder();
-            for(String c : this.commands) {
+            for (String c : this.commands) {
                 p.performCommand(c);
             }
         }
