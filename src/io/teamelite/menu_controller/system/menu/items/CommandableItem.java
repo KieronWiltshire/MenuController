@@ -27,11 +27,12 @@ public class CommandableItem extends MenuItem {
      * CommandableItem constructor
      *
      * @param inventory The InventoryMenu instance to handle the items
+     * @param name The name of the menu option
      * @param item The item to represent the menu option
      * @param commands The commands to execute when the item is selected
      */
-    public CommandableItem(InventoryMenu inventory, ItemStack item, String... commands) {
-        super(inventory, item);
+    public CommandableItem(InventoryMenu inventory, String name, ItemStack item, String... commands) {
+        super(inventory, name, item);
         this.commands = Arrays.asList(commands);
     }
 
