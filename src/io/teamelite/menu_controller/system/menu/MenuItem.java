@@ -18,8 +18,8 @@ public abstract class MenuItem implements Cloneable {
 
     // Instance properties
     private transient InventoryMenu menu;
+    private String name;
     private ItemStack item;
-    private final String type;
 
     /**
      * MenuItem constructor
@@ -27,10 +27,10 @@ public abstract class MenuItem implements Cloneable {
      * @param menu The inventory menu
      * @param item The item to represent the menu option
      */
-    protected MenuItem(InventoryMenu menu, ItemStack item) {
+    protected MenuItem(InventoryMenu menu, String name, ItemStack item) {
         this.menu = menu;
+        this.name = name;
         this.setItem(item);
-        this.type = this.getClass().getSimpleName();
     }
 
     /**
@@ -54,6 +54,24 @@ public abstract class MenuItem implements Cloneable {
      */
     public InventoryMenu getMenu() {
         return this.menu;
+    }
+
+    /**
+     * Set the name
+     *
+     * @param name The name of the menu option
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Get the name
+     *
+     * @return The name of the menu option
+     */
+    public String getName() {
+        return this.name;
     }
 
     /**

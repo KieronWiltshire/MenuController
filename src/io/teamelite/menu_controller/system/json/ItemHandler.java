@@ -2,15 +2,16 @@ package io.teamelite.menu_controller.system.json;
 
 import com.google.common.collect.ImmutableList;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 import io.teamelite.menu_controller.MenuController;
 import io.teamelite.menu_controller.system.menu.InventoryMenu;
 import io.teamelite.menu_controller.system.menu.MenuItem;
 import org.bukkit.Bukkit;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -62,8 +63,21 @@ public class ItemHandler {
             for (File f : dir.listFiles()) {
                 try {
                     JsonReader content = new JsonReader(new FileReader(f));
-
-
+                    JsonParser parser = new JsonParser();
+                    if (parser.parse(content).isJsonObject()) {
+                        JsonObject o = (JsonObject) parser.parse(content);
+                        if (o.has("class") && o.has("menu_item")) {
+                            if (o.get("class").getAsString() != null) {
+                                Class c = null;
+                                try {
+                                    c = Class.forName(String.valueOf(o.get("class")));
+                                    this.items.add(GsonFactory.getPrettyGson().<MenuItem>fromJson(o.get("menu_item"), c));
+                                } catch (ClassNotFoundException e) {
+                                    Bukkit.getLogger().log(Level.INFO, "Unable to retrieve the class: " + String.valueOf(o.get("class")));
+                                }
+                            }
+                        }
+                    }
                 } catch (FileNotFoundException e) {
                     Bukkit.getLogger().log(Level.INFO, "Unable to retrieve JSON from " + f.getName() + ".");
                 }
@@ -76,8 +90,22 @@ public class ItemHandler {
      *
      * @param item The MenuItem you wish to save
      */
-    public void save(MenuItem item) {
-        // TODO
+    public void save(MenuItem item) throws IOException {
+        Gson g = GsonFactory.getPrettyGson();
+        JsonElement t = g.toJsonTree(item);
+        JsonObject o = new JsonObject();
+        o.addProperty("class", this.getClass().getName());
+        o.add("menu_item", t);
+
+        String s = g.toJson(o);
+        File f = new File(MenuController.getPlugin().getItemDirectory(), item.getName());
+        if (f.exists()) {
+            f.delete();
+        }
+        f.createNewFile();
+        FileWriter out = new FileWriter(f);
+        out.write(s);
+        out.close();
     }
 
     /**
@@ -93,7 +121,7 @@ public class ItemHandler {
             try {
                 MenuItem m = (MenuItem) i.clone();
                 m.setMenu(menu);
-                
+
                 clones.add(m);
             } catch (CloneNotSupportedException e) {
                 e.printStackTrace();
