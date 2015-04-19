@@ -1,5 +1,6 @@
 package io.teamelite.menu_controller.system.menu;
 
+import com.google.common.collect.ImmutableList;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -103,6 +104,15 @@ public final class InventoryMenu implements Listener {
                 }
             }
         }
+    }
+
+    /**
+     * Get all of the menu items
+     *
+     * @return A list of all of the MenuItem instances
+     */
+    protected ImmutableList<MenuItem> getMenuItems() {
+        return ImmutableList.copyOf(this.items.values());
     }
 
     @EventHandler

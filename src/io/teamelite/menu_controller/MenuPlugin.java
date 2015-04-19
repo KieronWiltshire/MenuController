@@ -2,6 +2,8 @@ package io.teamelite.menu_controller;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+
 /**
  * @name 		MenuController
  * @author 		Liam Reffell and Kieron Wiltshire
@@ -32,6 +34,11 @@ public class MenuPlugin extends JavaPlugin {
 	public void onEnable() {
 		instance = this;
 
+		// Create the 'items' directory if it doesn't already exist
+		if (!this.getItemDirectory().exists()) {
+			this.getItemDirectory().mkdirs();
+		}
+
 		this.registerEvents();
 		this.registerCommands();
 	}
@@ -50,6 +57,15 @@ public class MenuPlugin extends JavaPlugin {
 	 */
 	private void registerCommands() {
 		// this.getCommand("voxel").setExecutor(new BrushMenu());
+	}
+
+	/**
+	 * Get the items directory
+	 *
+	 * @return The File instance of the items directory
+	 */
+	public File getItemDirectory() {
+		return new File(this.getDataFolder(), "items");
 	}
 
 }

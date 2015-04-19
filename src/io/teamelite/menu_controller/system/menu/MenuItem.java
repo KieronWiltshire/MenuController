@@ -2,6 +2,8 @@ package io.teamelite.menu_controller.system.menu;
 
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Iterator;
+
 /**
  * @name 		MenuController
  * @author 		Liam Reffell and Kieron Wiltshire
@@ -12,11 +14,12 @@ import org.bukkit.inventory.ItemStack;
  * 				It allows a user to open up an inventory interface and
  * 				select their saved menu options.
  */
-public abstract class MenuItem {
+public abstract class MenuItem implements Cloneable {
 
     // Instance properties
     private transient InventoryMenu menu;
     private ItemStack item;
+    private final String type;
 
     /**
      * MenuItem constructor
@@ -27,6 +30,21 @@ public abstract class MenuItem {
     protected MenuItem(InventoryMenu menu, ItemStack item) {
         this.menu = menu;
         this.setItem(item);
+        this.type = this.getClass().getSimpleName();
+    }
+
+    /**
+     * Set the menu
+     *
+     * @param menu The menu which will contain the item
+     */
+    public void setMenu(InventoryMenu menu) {
+        if (this.menu != null) {
+            for(Iterator<MenuItem> iter = this.menu.getMenuItems().iterator(); iter.hasNext();) {
+                this.getMenu().removeItem(this);
+            }
+        }
+        this.menu = menu;
     }
 
     /**
@@ -65,5 +83,10 @@ public abstract class MenuItem {
      * This method should be called if the item was selected
      */
     public abstract void onItemSelect();
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 
 }
