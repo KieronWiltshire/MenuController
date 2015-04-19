@@ -2,7 +2,7 @@ package io.teamelite.menu_controller;
 
 
 import io.teamelite.menu_controller.system.MenuManager;
-import io.teamelite.menu_controller.system.json.ItemHandler;
+import io.teamelite.menu_controller.system.file.ItemHandler;
 
 /**
  * @author Liam Reffell and Kieron Wiltshire
