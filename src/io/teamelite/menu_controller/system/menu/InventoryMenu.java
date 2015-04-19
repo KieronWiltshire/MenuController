@@ -117,16 +117,21 @@ public final class InventoryMenu implements Listener {
 
     @EventHandler
     private void onInventoryDrag(InventoryDragEvent e) {
-        if (e.getInventory().equals(this.inventory)) {
-            e.setCancelled(true);
+        if (e.getInventory() != null && this.inventory != null) {
+            if (e.getInventory().equals(this.inventory)) {
+                e.setCancelled(true);
+            }
         }
     }
 
     @EventHandler
     private void onInventoryClick(InventoryClickEvent e) {
-        if (e.getClickedInventory().equals(this.inventory)) {
-            if (this.items.containsKey(e.getSlot())) {
-                this.items.get(e.getSlot()).onItemSelect();
+        if (e.getClickedInventory() != null && this.inventory != null) {
+            if (e.getClickedInventory().equals(this.inventory)) {
+                if (this.items.containsKey(e.getSlot())) {
+                    this.items.get(e.getSlot()).onItemSelect();
+                    e.setCancelled(true);
+                }
             }
         }
     }

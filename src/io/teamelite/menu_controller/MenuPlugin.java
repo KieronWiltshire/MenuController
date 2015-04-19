@@ -1,5 +1,7 @@
 package io.teamelite.menu_controller;
 
+import org.bukkit.Bukkit;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -14,7 +16,7 @@ import java.io.File;
  * 				It allows a user to open up an inventory interface and
  * 				select their saved menu options.
  */
-public class MenuPlugin extends JavaPlugin {
+public class MenuPlugin extends JavaPlugin implements Listener {
 
 	// Plugin instance
 	private static MenuPlugin instance;
@@ -49,6 +51,7 @@ public class MenuPlugin extends JavaPlugin {
 	 */
 	private void registerEvents() {
 		// No events currently need registering
+		Bukkit.getPluginManager().registerEvents(this, this);
 	}
 
 	/**

@@ -1,3 +1,4 @@
 name: MenuController
 version: 1.0.0
 main: io.teamelite.menu_controller.MenuPlugin
+authors: [ Kieron Wiltshire, Liam Reffell ]

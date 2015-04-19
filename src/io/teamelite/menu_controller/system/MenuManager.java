@@ -49,13 +49,15 @@ public class MenuManager {
      *
      * @param player The player you wish to create a menu for
      */
-    public void createMenu(Player player, String title) {
-        if (manager.containsKey(player.getUniqueId())) return;
+    public InventoryMenu createMenu(Player player, String title) {
+        if (manager.containsKey(player.getUniqueId())) return null;
 
         InventoryMenu menu = new InventoryMenu(player, title);
         Bukkit.getPluginManager().registerEvents(menu, MenuPlugin.instance());
 
         manager.put(player.getUniqueId(), menu);
+
+        return menu;
     }
 
     /**

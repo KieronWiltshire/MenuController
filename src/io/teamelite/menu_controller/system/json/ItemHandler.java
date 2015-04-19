@@ -64,15 +64,16 @@ public class ItemHandler {
                 try {
                     JsonReader content = new JsonReader(new FileReader(f));
                     JsonParser parser = new JsonParser();
-                    if (parser.parse(content).isJsonObject()) {
-                        JsonObject o = (JsonObject) parser.parse(content);
+                    JsonElement e = parser.parse(content);
+                    if (e.isJsonObject()) {
+                        JsonObject o = e.getAsJsonObject();
                         if (o.has("class") && o.has("menu_item")) {
                             if (o.get("class").getAsString() != null) {
                                 Class c = null;
                                 try {
-                                    c = Class.forName(String.valueOf(o.get("class")));
+                                    c = Class.forName(o.get("class").getAsString());
                                     this.items.add(GsonFactory.getPrettyGson().<MenuItem>fromJson(o.get("menu_item"), c));
-                                } catch (ClassNotFoundException e) {
+                                } catch (ClassNotFoundException ex) {
                                     Bukkit.getLogger().log(Level.INFO, "Unable to retrieve the class: " + String.valueOf(o.get("class")));
                                 }
                             }
@@ -94,7 +95,7 @@ public class ItemHandler {
         Gson g = GsonFactory.getPrettyGson();
         JsonElement t = g.toJsonTree(item);
         JsonObject o = new JsonObject();
-        o.addProperty("class", this.getClass().getName());
+        o.addProperty("class", item.getClass().getName());
         o.add("menu_item", t);
 
         String s = g.toJson(o);
